@@ -11,7 +11,7 @@ export default function Article(){
     const { isLoading, isFetching, error, data } = useQuery('getAllArticles', () => articleDao.getArticles(),{
     cacheTime: 50000,
   });
-    if (isLoading) return <p>Loading...</p>;
+    if (isLoading) return <Spinner />;
     let articlesData = data.data[0];
     return (
         <React.Fragment>
