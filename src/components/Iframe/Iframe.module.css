@@ -1,0 +1,6 @@
+.container {
+    width: 100%;
+    /* Todo: Remove hardcoded height */
+    height: 550px;
+    border-radius: 10px;
+}

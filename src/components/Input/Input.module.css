@@ -1,0 +1,47 @@
+.editableInputContainer {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.editableInput {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 10px;
+    text-align: center;
+    margin: 10px;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    color: inherit;
+    background-color: transparent;
+    resize: none;
+    box-sizing: border-box;
+}
+
+.saveIcon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.Button {
+    background-color: #00bcd4;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    width: 120px;
+    height: 40px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.Button:hover {
+    background-color: #00acc1;
+}
