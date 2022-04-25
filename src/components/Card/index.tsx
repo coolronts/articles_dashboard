@@ -1,25 +1,30 @@
 import React, {Suspense, useEffect, useRef, useState} from "react";
 
-import DaoFactory from '../../dao';
 import {EditableInput} from "../Input";
-import Spinner from '../Spinner'
-import styles from './Card.module.css'
+import {IArticle} from "../../interfaces";
+import { Iframe } from '../Iframe';
+import { Image } from '../Image';
+import { Spinner } from '../Spinner'
 import { useMutation } from "react-query";
 
-const Iframe = React.lazy(() => import('../Iframe'));
-const Image = React.lazy(() => import('../Image'));
-const articleDao = new DaoFactory('articles');
+const styles = require('./Card.module.css');
 
-export default function Card({ article, isLastColumn }) {
+const DaoFactory = require('../../dao');
+const articleDao = new DaoFactory('articles');
+type Props = {
+  article: IArticle,
+  isLastColumn: boolean,
+}
+export const Card: React.FC<Props> = ({ article, isLastColumn }) =>  {
   let width = article.width;
   let widthPercent = isLastColumn ? '' : Math.round(width / 12 * 100) + '%';
   var flexGrow = isLastColumn ? '1' : '0';
   const ref = useRef(null);
-  const [elementWidth, setElementWidth] = useState(0)
-  const[updatedTitle, setUpdatedTitle] = useState(null);
+  const [elementWidth, setElementWidth] = useState<any>()
+  const[updatedTitle, setUpdatedTitle] = useState<string>(null);
   
   useEffect(() => {
-    setElementWidth(ref.current.clientWidth);
+    if(ref.current.clientWidth ) setElementWidth(ref!.current!.clientWidth);
   }, [width]);
 
   const { mutate: updateTitleByArticleName } = useMutation(
@@ -33,9 +38,9 @@ export default function Card({ article, isLastColumn }) {
     }
   }, [updatedTitle]);
   
-  function HandleSave(newTitle) { 
+  function HandleSave(newTitle: string) { 
     if(updatedTitle === newTitle) return;
-    setUpdatedTitle(() => newTitle);
+    setUpdatedTitle(newTitle);
   }
 
   return (
