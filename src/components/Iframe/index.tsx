@@ -1,6 +1,6 @@
 import React from 'react'
+import styles from './Iframe.module.css';
 
-const styles = require('./Iframe.module.css');
 type IIframe = {
   url: string,
   title: string,

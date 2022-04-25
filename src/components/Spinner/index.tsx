@@ -1,6 +1,5 @@
 import React from "react";
-
-const styles = require('./Spinner.module.css');
+import styles from './Spinner.module.css';
 
 export const Spinner: React.FC = () => {
   return (

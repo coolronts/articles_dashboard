@@ -1,24 +1,20 @@
-import {IArticleDAO} from '../../interfaces';
+import {IRows} from '../../interfaces';
+import networkClient from '../../configs/axiosConfig';
 
-const  { imageEncode } = require('../../utils/imageEncode')
-
-const {networkClient} = require('../../configs/axiosConfig');
-
-export class ArticleDao implements IArticleDAO {
-    async getArticles() {
-        const response = await networkClient.get('/aller-structure-task/test_data.json');
-        return response
+export class ArticleDao  {
+    
+    static getArticles():Promise<IRows[]> {
+        return networkClient.get('/aller-structure-task/test_data.json')
+            .then(response => {
+                return response[0]
+            })
     }
 
-    async getArticleImage(imageUrl: string) {
-        const response = await fetch(imageUrl);
-        const blob = await response.blob();
-        return imageEncode(blob)
-    }
-
-    async updateTitleByArticleId(changedTitle: string):Promise<string> {
+    static updateTitleByArticleId(changedTitle: string):string {
         console.log(changedTitle)
-
         return "Saved"
     }
 }
+
+
+

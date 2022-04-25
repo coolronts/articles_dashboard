@@ -1,8 +1,7 @@
 import {Card} from '../Card'
 import {IArticle} from '../../interfaces'
 import React from 'react'
-
-const styles = require('./Flexrow.module.css');
+import styles from './Flexrow.module.css';
 
 type Props = {
     row: any
