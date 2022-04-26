@@ -1,17 +1,18 @@
-import {Card} from '../Card'
-import {IArticle} from '../../interfaces'
-import React from 'react'
+import {IArticle, IRows} from '../../interfaces'
+import React, { cloneElement } from 'react'
+
 import styles from './Flexrow.module.css';
 
 type Props = {
-    row: any
+  row: IRows,
+  children: any
 }
-export const Flexrow: React.FC<Props> = ({ row }) =>  {
+export const Flexrow: React.FC<Props> = ({ row, children }) => {
   let lastColumn = row.columns.length - 1;
   return (
     <div className={styles.flex}>
       {row.columns.map((article:IArticle, index: number) => {
-        return <Card key={index} article={article} isLastColumn={lastColumn === index ? true : false} />
+        return  cloneElement(children, {article, isLastColumn: index === lastColumn})
       })}
     </div>
   )

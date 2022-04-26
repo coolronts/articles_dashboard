@@ -10,8 +10,8 @@ import styles from './Card.module.css';
 import { useMutation } from "react-query";
 
 type Props = {
-  article: IArticle,
-  isLastColumn: boolean,
+  article?: IArticle,
+  isLastColumn?: boolean,
 }
 export const Card: React.FC<Props> = ({ article, isLastColumn }) => {
   let width = article.width;
@@ -30,12 +30,10 @@ export const Card: React.FC<Props> = ({ article, isLastColumn }) => {
   );
 
   useEffect(() => {
-    if(updatedTitle) {
-      updateTitleByArticleName();
-    }
+    if(updatedTitle) updateTitleByArticleName()
   }, [updatedTitle]);
 
-  function HandleSave(newTitle: string) { 
+  function HandleSave(newTitle: string) {
     if(updatedTitle === newTitle) return;
     setUpdatedTitle(newTitle);
   }
